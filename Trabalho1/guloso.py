@@ -2,7 +2,7 @@ from extra import *
 
 def guloso(grafo):
 
-    out = grafo.copy()
+    out = grafo.copy()  #Representa os nodos que ainda não estão em c
     out.remove(out[0])
 
     n = len(grafo)
@@ -12,7 +12,7 @@ def guloso(grafo):
 
     while (len(c) < n):  ##Enquanto não tiverem todos os nodos em c
 
-        v = c[-1].copy()
+        v = c[-1].copy()  ##Último nodo adicionado em c
         
         nodo_proximo = 0
         menor_dist = distancia(v, out[0])
@@ -35,7 +35,7 @@ def guloso(grafo):
 ##==================================================================================================
 
 caminho = "Trabalho1/instancias_caixeiro_viajante/"
-arquivo = "2_inst2.tsp"
+arquivo = "4_inst4.tsp"
 f = open(f'{caminho}{arquivo}', "r")
 
 grafo, problema = ler_grafo(f)
