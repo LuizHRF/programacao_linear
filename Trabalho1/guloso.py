@@ -1,4 +1,5 @@
 from extra import *
+import time
 
 def guloso(grafo):
 
@@ -34,16 +35,19 @@ def guloso(grafo):
 ##PRINCIPAL
 ##==================================================================================================
 
-caminho = "Trabalho1/instancias_caixeiro_viajante/"
-arquivo = "4_inst4.tsp"
-f = open(f'{caminho}{arquivo}', "r")
+# caminho = "Trabalho1/instancias_caixeiro_viajante/"
+# arquivo = "10_kroA100.tsp"
+# f = open(f'{caminho}{arquivo}', "r")
 
-grafo, problema = ler_grafo(f)
+# grafo, problema = ler_grafo(f)
 
-melhor_caminho = guloso(grafo)
+# inicio = time.time()
+# melhor_caminho = guloso(grafo)
 
-melhor_valor = custo_total(melhor_caminho)
+# melhor_valor = custo_total(melhor_caminho)
+# fim = time.time()
 
-print(f"Para o problema:")
-problema.print()
-print("A melhor solução encontrada foi: ", melhor_valor)
+# print(f"Para o problema:")
+# problema.print()
+# print("A melhor solução encontrada foi: ", melhor_valor)
+# print("Tempo de execução: ", fim - inicio)
