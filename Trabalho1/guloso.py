@@ -18,7 +18,7 @@ def guloso(grafo):
         nodo_proximo = 0
         menor_dist = distancia(v, out[0])
 
-        for i in range(len(out)):
+        for i in range(1, len(out)):
 
             dist = distancia(v, out[i])
             
@@ -35,19 +35,19 @@ def guloso(grafo):
 ##PRINCIPAL
 ##==================================================================================================
 
-# caminho = "Trabalho1/instancias_caixeiro_viajante/"
-# arquivo = "10_kroA100.tsp"
-# f = open(f'{caminho}{arquivo}', "r")
+caminho = "Trabalho1/instancias_caixeiro_viajante/"
+arquivo = "1_inst1.tsp"
+f = open(f'{caminho}{arquivo}', "r")
 
-# grafo, problema = ler_grafo(f)
+grafo, problema = ler_grafo(f)
 
-# inicio = time.time()
-# melhor_caminho = guloso(grafo)
+inicio = time.time()
+melhor_caminho = guloso(grafo)
 
-# melhor_valor = custo_total(melhor_caminho)
-# fim = time.time()
+melhor_valor = custo_total(melhor_caminho)
+fim = time.time()
 
-# print(f"Para o problema:")
-# problema.print()
-# print("A melhor solução encontrada foi: ", melhor_valor)
-# print("Tempo de execução: ", fim - inicio)
+print(f"Para o problema:")
+problema.print()
+print("A melhor solução encontrada foi: ", melhor_valor)
+print("Tempo de execução: ", fim - inicio)

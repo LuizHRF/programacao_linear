@@ -1,3 +1,0 @@
-Parte das instâncias disponibilizadas nesta pasta foram obtidas do seguinte
-repositório:
-https://github.com/mastqe/tsplib

@@ -8,7 +8,7 @@ caminho = "Trabalho1/instancias_caixeiro_viajante/"
 # caminho = "Trabalho1/teste/"
 
 resultados = []
-tempo_limite = 60
+tempo_limite = 60  ##Segundos
 
 def executar_algoritmo_bruto(grafo):
     return bruto(grafo)
