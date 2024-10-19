@@ -1,15 +1,26 @@
 from t4_aux import *
-from pyscipopt import Model
+from pyscipopt import Model, quicksum
 
-grafo = le_grafo('Trabalho4/instancias_conjunto_independente_maximo/1_hamming6-2.clq')
+grafo = le_grafo('Trabalho4/instancias_conjunto_independente_maximo/3_johnson16-2-4.clq')
 
 modelo = Model("Conjunto Independente Maximo")
 
 modelo.setParam("presolving/maxrounds", 0)
 modelo.setParam("separating/maxrounds", 0)
 
-vars = {}
-for v in range(1, grafo.vertices + 1):
-    vars[v] = modelo.addVar(name=str(v), vtype="BINARY", obj=1.0)
+vars = [modelo.addVar(name=str(v), vtype="B") for v in range(1, grafo.vertices + 1)]
 
-print(vars)
+modelo.setObjective(quicksum(vars), sense="maximize")
+
+cons = {}
+for i in range(1, grafo.getVertices()):
+    for v in grafo.adjacencia[i]:
+        cons[i] = modelo.addCons(vars[v] + vars[i] <= 1)
+
+modelo.optimize()
+
+
+independet_set  = [v for v in range(1, grafo.getVertices()) if modelo.getVal(vars[v]) == 1]
+
+print(independet_set)
+print(len(independet_set))

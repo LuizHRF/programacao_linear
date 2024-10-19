@@ -3,8 +3,11 @@ class Grafo:
         self.adjacencia = {}
         self.vertices = 0
 
+    def getVertices(self):
+        return self.vertices
+
     def set_vertices(self, vertices):
-        self.vertices = vertices
+        self.vertices = vertices + 1
         self.adjacencia = {i: set() for i in range(1, vertices + 1)}
 
     def add_aresta(self, aresta):
