@@ -1,7 +1,7 @@
 from t4_aux import *
 from pyscipopt import Model, quicksum
 
-grafo = le_grafo('Trabalho4/instancias_conjunto_independente_maximo/3_johnson16-2-4.clq')
+grafo = le_grafo('Trabalho4/instancias_conjunto_independente_maximo/2_johnson8-4-4.clq')
 
 modelo = Model("Conjunto Independente Maximo")
 
@@ -19,8 +19,6 @@ for i in range(1, grafo.getVertices()):
 
 modelo.optimize()
 
-
 independet_set  = [v for v in range(1, grafo.getVertices()) if modelo.getVal(vars[v]) == 1]
 
-print(independet_set)
 print(len(independet_set))
