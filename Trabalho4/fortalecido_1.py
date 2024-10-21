@@ -23,9 +23,12 @@ vars = [modelo.addVar(name=str(v), vtype="B") for v in range(1, grafo.vertices +
 modelo.setObjective(quicksum(vars), sense="maximize")
 
 cons = {}
+counter = 0
 for i in range(1, grafo.getVertices()):
     for v in grafo.adjacencia[i]:
-        cons[i] = modelo.addCons(vars[v] + vars[i] <= 1)
+        if v < i:
+            counter += 1
+            cons[counter] = modelo.addCons(vars[v] + vars[i] <= 1)
 
 cliques = []
 for i in range (1, grafo.getVertices()):

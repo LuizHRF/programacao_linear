@@ -10,7 +10,7 @@
 from t4_aux import *
 from pyscipopt import Model, quicksum
 
-nome = "3_johnson16-2-4"
+nome = "4_keller4"
 grafo = le_grafo(f'Trabalho4/instancias_conjunto_independente_maximo/{nome}.clq')
 
 modelo = Model("Conjunto Independente Maximo")
@@ -23,12 +23,17 @@ vars = [modelo.addVar(name=str(v), vtype="B") for v in range(1, grafo.vertices +
 modelo.setObjective(quicksum(vars), sense="maximize")
 
 cons = {}
+counter = 0
 for i in range(1, grafo.getVertices()):
     for v in grafo.adjacencia[i]:
-        cons[i] = modelo.addCons(vars[v] + vars[i] <= 1)
-
-modelo.optimize()
+        if v < i:
+            counter += 1
+            cons[counter] = modelo.addCons(vars[v] + vars[i] <= 1)
+        
+        
 modelo.writeProblem(filename="Trabalho4/Basico.lp")
+modelo.optimize()
+
 
 independet_set  = [v for v in range(1, grafo.getVertices()) if modelo.getVal(vars[v]) == 1]
 
