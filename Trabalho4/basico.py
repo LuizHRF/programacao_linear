@@ -1,7 +1,17 @@
+# =======================================================
+# Trabalho 4 - Programação Linear
+# Alunos: Luiz Faccio e Robert Drey
+# =======================================================
+# Este script executa, para uma instância do problema do 
+# conjunto independente máximo, a solução para o modelo 
+# matemático básico.
+# =======================================================
+
 from t4_aux import *
 from pyscipopt import Model, quicksum
 
-grafo = le_grafo('Trabalho4/instancias_conjunto_independente_maximo/2_johnson8-4-4.clq')
+nome = "6_san200_0.7_1"
+grafo = le_grafo(f'Trabalho4/instancias_conjunto_independente_maximo/{nome}.clq')
 
 modelo = Model("Conjunto Independente Maximo")
 

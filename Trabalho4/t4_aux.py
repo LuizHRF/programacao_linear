@@ -1,3 +1,12 @@
+# =======================================================
+# Trabalho 4 - Programação Linear
+# Alunos: Luiz Faccio e Robert Drey
+# =======================================================
+# Este script contém funções auxiliares para a resolução
+# das instâncias do problema.
+# =======================================================
+
+
 class Grafo:
     def __init__(self):
         self.adjacencia = {}
