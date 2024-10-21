@@ -4,13 +4,13 @@
 # =======================================================
 # Este script executa, para uma instância do problema do 
 # conjunto independente máximo, a solução para o modelo 
-# matemático fortalecido - com restrições extras.
+# matemático fortalecido - com uma restrição extra.
 # =======================================================
 
 from t4_aux import *
 from pyscipopt  import Model, quicksum
 
-nome = "4_keller4"
+nome = "3_johnson16-2-4"
 grafo = le_grafo(f'Trabalho4/instancias_conjunto_independente_maximo/{nome}.clq')
 
 modelo = Model("Conjunto Independente Maximo")
@@ -33,14 +33,18 @@ for i in range (1, grafo.getVertices()):
     if len(clique) >2:
         cliques.append(clique)
 
-for clique in cliques:
-    a = [vars[v] for v in clique]
-    print(a)
-    modelo.addCons(quicksum(a) <= 1)
+cliques.sort(key=len, reverse=True)
+clique = cliques[0] ## maior clique
+
+a = [vars[v] for v in clique]
+
+modelo.addCons(quicksum(a) <= 1)
 
 # print(modelo.getConss())
 
 modelo.optimize()
+modelo.writeProblem(filename="Trabalh04/Fortalecido_1.lp")
+
 
 independet_set  = [v for v in range(1, grafo.getVertices()) if modelo.getVal(vars[v]) == 1]
 
