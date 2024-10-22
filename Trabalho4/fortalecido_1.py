@@ -10,7 +10,7 @@
 from t4_aux import *
 from pyscipopt  import Model, quicksum
 
-nome = "3_johnson16-2-4"
+nome = "6_san200_0.7_1"
 grafo = le_grafo(f'Trabalho4/instancias_conjunto_independente_maximo/{nome}.clq')
 
 modelo = Model("Conjunto Independente Maximo")
@@ -37,7 +37,9 @@ for i in range (1, grafo.getVertices()):
         cliques.append(clique)
 
 cliques.sort(key=len, reverse=True)
-clique = cliques[0] ## maior clique
+
+if len(cliques) >0: 
+    clique = cliques[0] ## maior clique
 
 a = [vars[v] for v in clique]
 
@@ -46,7 +48,7 @@ modelo.addCons(quicksum(a) <= 1)
 # print(modelo.getConss())
 
 modelo.optimize()
-modelo.writeProblem(filename="Trabalh04/Fortalecido_1.lp")
+modelo.writeProblem(filename=f"Trabalho4/Fortalecido_1_{nome}.lp")
 
 
 independet_set  = [v for v in range(1, grafo.getVertices()) if modelo.getVal(vars[v]) == 1]
